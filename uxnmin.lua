@@ -56,10 +56,10 @@ ops = {
     [0x20]=function() if stk[0][DEC(0)] > 0 then IMM(); pc=pc+a[1]&0xFFFF else pc=pc+2&0xFFFF end end, -- JCI
     [0x40]=function() IMM(); pc=pc+a[1]&0xFFFF end, -- JMI
     [0x60]=function() IMM(); PUx(pc, 1, 1); pc=pc+a[1]&0xFFFF end, -- JSI
-    [0x80]=function() stk[0][INC(0)] = ram[pc]; pc=pc+1&0xFFFF end, -- LI2
+    [0x80]=function() stk[0][INC(0)] = ram[pc]; pc=pc+1&0xFFFF end, -- LIT
     [0xa0]=function() stk[0][INC(0)] = ram[pc]; stk[0][INC(0)] = ram[pc+1&0xFFFF]; pc=pc+2&0xFFFF end, -- LI2
-    [0xc0]=function() stk[1][INC(1)] = ram[pc]; pc=pc+1&0xFFFF end, -- LI2
-    [0xe0]=function() stk[1][INC(1)] = ram[pc]; stk[1][INC(1)] = ram[pc+1&0xFFFF]; pc=pc+2&0xFFFF end, -- LI2
+    [0xc0]=function() stk[1][INC(1)] = ram[pc]; pc=pc+1&0xFFFF end, -- LIr
+    [0xe0]=function() stk[1][INC(1)] = ram[pc]; stk[1][INC(1)] = ram[pc+1&0xFFFF]; pc=pc+2&0xFFFF end, -- L2r
 }
 OPC(0x01, function() POx(a,d) end, function() PUx(a[1] + 1,d, r) end) -- INC
 OPC(0x02, function() ptr[r]=ptr[r]-1-d&0xFF end, function()end) -- POP
