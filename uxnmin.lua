@@ -116,8 +116,8 @@ for i = 1, #rom do
     ram[i + 0xFF] = rom:byte(i, i)
 end
 uxn_eval(0x100)
-if console_vector then
-    while not dev[0x0f] do
+if console_vector > 0 then
+    while dev[0x0f] == 0 do
         local c = io.read(1);
         if c == nil then break end
         console_input(string.byte(c), 1);
